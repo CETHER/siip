@@ -1,0 +1,52 @@
+body {
+	background-color: #FFFFFF;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	margin: 0px;
+}
+
+.textoTitulos1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #17335b;
+}
+
+.textoTitulos2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #008771;
+}
+
+.textoTitulos3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #008771;
+}
+
+.textoTitulos4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+.textoTablas1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #008771;
+	background-color: #EEEEEE;
+	height: 30px;
+}
+
+.textoTablas2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	background-color: #EEEEEE;
+	height: 30px;
+}
+
+.textoRojo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #F00000;
+}
