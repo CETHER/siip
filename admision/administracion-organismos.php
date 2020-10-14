@@ -1,11 +1,7 @@
-﻿<?php
-// Notificar solamente errores de ejecución
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+<?php
   require_once "../core/modelo-usuarios.php";
   require_once "../core/modelo-programas.php";
-  require_once "../core/modelo-orientaciones.php";
-  require_once "../core/modelo-ciclos.php";
-  require_once "modelo-aspirantes.php";
+  require_once "modelo-organismos.php";
   
   session_start( );
   $obj = new Usuarios( );
@@ -18,18 +14,9 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
   $obj2->id_programa = $_SESSION["id_programa"];
   $obj2->obtenerPrograma( );
   
-  $obj3 = new Ciclos( );
-  $obj3->listaCiclos( );
-  
-  if( !isset( $_GET["id_ciclo"] ) )
-  {
-    $_GET["id_ciclo"] = 0;
-  }
-  
-  $obj4 = new Aspirantes( );
-  $obj4->id_programa = $obj2->id_programa;
-  $obj4->id_ciclo = $_GET["id_ciclo"];
-  $obj4->listaAspirantesCiclo( );
+  $obj3 = new Organismos( );
+  $obj3->id_programa = $obj2->id_programa;
+  $obj3->listaOrganismosPrograma( );
 ?>
 
 
@@ -70,7 +57,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <td width="10%">&nbsp;</td>
         </tr>
         <tr class="textoTitulos1">
-          <td colspan="4">M&oacute;dulo Aspirantes</td>
+          <td colspan="4">M&oacute;dulo Admisi&oacute;n</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -79,7 +66,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos2">
-          <td colspan="4">Administraci&oacute;n de aspirantes</td>
+          <td colspan="4">Administraci&oacute;n de organismos nacionales e internacionales para la difusión de la convocatoria</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -91,72 +78,37 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <td colspan="4">Programa:</td>
         </tr>
         <tr class="textoTitulos4">
-          <td colspan="4"><?php echo $obj2->nombre; ?>&nbsp;</td>
+          <td colspan="3"><?php echo $obj2->nombre; ?>&nbsp;</td>
+          <td align="center"><input type="button" onclick="location.href='alta-organismos.php'" value="   Nuevo   " /></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-        </tr>
-        <tr class="textoTitulos3">
-          <td colspan="4">Ciclo de ingreso a consultar:</td>
-        </tr>
-        <tr class="textoTitulos4">
-          <td>
-          <select name="id_ciclo" id="id_ciclo" onchange="MM_jumpMenu('parent',this,0)">
-          <option value=''></option>
-          <?php
-            $max = count( $obj3->id_ciclo );
-            
-            for( $i=0; $i<$max; $i++ )
-            {
-              if( $obj3->id_ciclo[$i]==$obj4->id_ciclo )
-	      {
-                printf( "<option value='administracion-aspirantes.php?id_ciclo=%d' selected='selected'>%s</option>\n", $obj3->id_ciclo[$i], $obj3->nombre[$i] );
-	      }
-	      else
-	      {
-                printf( "<option value='administracion-aspirantes.php?id_ciclo=%d'>%s</option>\n", $obj3->id_ciclo[$i], $obj3->nombre[$i] );
-	      }
-            }
-	  ?>
-          </select>
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td align="center"><input type="button" onclick="location.href='alta-aspirantes.php'" value="   Nuevo   " /></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
+        </tr>        
         <tr class="textoTablas1">
           <td>ID</td>
-          <td>NOMBRE</td>
-          <td>ORIENTACI&Oacute;N</td>
+          <td>ORGANISMO</td>
+          <td>PAIS</td>
           <td>ACCIONES</td>
         </tr>
         <?php
-	  $max = count( $obj4->id_aspirante );
-          
+          $max = count( $obj3->id_organismo );
+                
           for( $i=0; $i<$max; $i++ )
           {
-            $obj5 = new Orientaciones( );
-            $obj5->id_orientacion = $obj4->id_orientacion[$i];
-            $obj5->obtenerOrientacion( );
-	?>
+	      ?>
         <tr class="textoTablas2">
-          <td><?php echo $obj4->id_aspirante[$i]; ?>&nbsp;</td>
-          <td><?php echo $obj4->apellido_paterno[$i]." ".$obj4->apellido_materno[$i]." ".$obj4->nombre[$i]; ?>&nbsp;</td>
-          <td><?php echo $obj5->nombre; ?>&nbsp;</td>
+          <td><?php echo $obj3->id_organismo[$i]; ?>&nbsp;</td>
+          <td><?php echo $obj3->nombre[$i]; ?>&nbsp;</td>
+          <td><?php echo $obj3->pais[$i]; ?>&nbsp;</td>
           <td align="center">
-          <a href="consulta-aspirantes.php?id_aspirante=<?php echo $obj4->id_aspirante[$i]; ?>">
+          <a href="consulta-organismos.php?id_organismo=<?php echo $obj3->id_organismo[$i]; ?>">
           <img src="../images/icon-search.png" width="16" height="16" /></a>
-          <a href="edicion-aspirantes.php?id_aspirante=<?php echo $obj4->id_aspirante[$i]; ?>">
+          <a href="edicion-organismos.php?id_organismo=<?php echo $obj3->id_organismo[$i]; ?>">
           <img src="../images/icon-edit.png" width="16" height="16" /></a>
-          <a href="baja-aspirantes.php?id_aspirante=<?php echo $obj4->id_aspirante[$i]; ?>">
+          <a href="baja-organismos.php?id_organismo=<?php echo $obj3->id_organismo[$i]; ?>">
           <img src="../images/icon-delete.png" width="16" height="16" /></a>
           </td>
         </tr>
