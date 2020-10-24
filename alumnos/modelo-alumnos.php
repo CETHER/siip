@@ -207,11 +207,11 @@
       
       if( $max!=0 )
       {
-	return true;
+	      return true;
       }
       else
       {
-	return false;
+	      return false;
       }
       
       $res->close( );

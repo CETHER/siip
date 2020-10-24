@@ -279,6 +279,10 @@
   $obj2->evaluacion = $_POST["evaluacion"];
   $obj2->oficio_prorroga = $_FILES["oficio_prorroga"]["name"];
   $obj2->fecha_prorroga = $_POST["fecha_prorroga"];
+  $obj2->res_anteproyecto = $_POST["res_anteproyecto"];
+  $obj2->res_entrevista = $_POST["res_entrevista"];
+  $obj2->res_exani = $_POST["res_exani"];
+  $obj2->res_propedeutico = $_POST["res_propedeutico"];
   $obj2->documento1 = $_POST["documento1"];
   $obj2->documento2 = $_POST["documento2"];
   $obj2->documento3 = $_POST["documento3"];

@@ -175,9 +175,9 @@
         </tr>
         <tr class="textoTitulos4">
           <td colspan="4">
-	  <a href="consulta-aspirantes.php?id_aspirante=<?php echo $obj2->id_aspirante; ?>" class="textoTitulos4" target="_blank">
-	  <?php echo $obj2->apellido_paterno." ".$obj2->apellido_materno." ".$obj2->nombre; ?>
-          </a>
+            <a href="consulta-aspirantes.php?id_aspirante=<?php echo $obj2->id_aspirante; ?>" class="textoTitulos4" target="_blank">
+            <?php echo $obj2->apellido_paterno." ".$obj2->apellido_materno." ".$obj2->nombre; ?>
+            </a>
           </td>
         </tr>
         <tr>
@@ -191,14 +191,32 @@
         </tr>
         <tr class="textoTitulos4">
           <td colspan="4">
-	  <select name="evaluacion">
-          <option value=''></option>
-          <option value='1' <?php if( $obj2->evaluacion==1 ) { echo "selected='selected'"; } ?>>Aceptado</option>
-          <option value='2' <?php if( $obj2->evaluacion==2 ) { echo "selected='selected'"; } ?>>Aceptado con dispensa de promedio</option>
-          <option value='3' <?php if( $obj2->evaluacion==3 ) { echo "selected='selected'"; } ?>>Aceptado con adeudo de documentos</option>
-          <option value='4' <?php if( $obj2->evaluacion==4 ) { echo "selected='selected'"; } ?>>No admitido</option>
-          </select>
+	          <select name="evaluacion">
+              <option value=''></option>
+              <option value='1' <?php if( $obj2->evaluacion==1 ) { echo "selected='selected'"; } ?>>Aceptado</option>
+              <option value='2' <?php if( $obj2->evaluacion==2 ) { echo "selected='selected'"; } ?>>Aceptado con dispensa de promedio</option>
+              <option value='3' <?php if( $obj2->evaluacion==3 ) { echo "selected='selected'"; } ?>>Aceptado con adeudo de documentos</option>
+              <option value='4' <?php if( $obj2->evaluacion==4 ) { echo "selected='selected'"; } ?>>No admitido</option>
+            </select>
           </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos3">
+          <td>Presentaci&oacute;n de ante-proyecto</td>
+          <td>Pago</td>
+          <td>EXANI III</td>
+          <td>Curso proped&eacuteutico</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td><input type="number" name="res_anteproyecto" size="30" min="0" max="100" step=".1" value="0" required="required" /></td>
+          <td><input type="number" name="res_entrevista" size="20" min="0" max="100" step=".1" value="0" required="required" /></td>
+          <td><input type="number" name="res_exani" size="20" min="0" max="100" step=".1" value="0" required="required" /></td>
+          <td><input type="number" name="res_propedeutico" size="20" min="0" max="100" step=".1" value="0" required="required" /></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -216,8 +234,8 @@
             if( $obj2->oficio_prorroga!=null )
             {
               printf( "<a href='../uploads/%s' class='textoTitulos4' target='_blank'>%s</a>", $obj2->oficio_prorroga, $obj2->oficio_prorroga );
-	    }
-	  ?>
+            }
+          ?>
           </td>
         </tr>
         <tr>

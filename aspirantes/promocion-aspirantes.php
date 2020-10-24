@@ -136,16 +136,16 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <td>ACCIONES</td>
         </tr>
         <?php
-	  $max = count( $obj4->id_aspirante );
+          $max = count( $obj4->id_aspirante );
           
           for( $i=0; $i<$max; $i++ )
           {
-	    $obj5 = new Alumnos( );
+	          $obj5 = new Alumnos( );
             $obj5->id_aspirante = $obj4->id_aspirante[$i];
             
-	    if( ( $obj4->evaluacion[$i]==1 || $obj4->evaluacion[$i]==2 || $obj4->evaluacion[$i]==3 ) && $obj5->verificarAspirante( )==false )
-	    {
-	?>
+	          if( ( $obj4->evaluacion[$i]==1 || $obj4->evaluacion[$i]==2 || $obj4->evaluacion[$i]==3 ) && $obj5->verificarAspirante( )==false )
+	          {
+	      ?>
         <tr class="textoTablas2">
           <td><?php echo $obj4->id_aspirante[$i]; ?>&nbsp;</td>
           <td><?php echo $obj4->apellido_paterno[$i]." ".$obj4->apellido_materno[$i]." ".$obj4->nombre[$i]; ?>&nbsp;</td>
@@ -156,8 +156,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           </td>
         </tr>
         <?php
-	    }
-	  }
+	            }
+	        }
 	?>
         <tr>
           <td>&nbsp;</td>

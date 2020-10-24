@@ -260,8 +260,13 @@
 	$this->archivo13 = $obj->archivo13;
 	$this->oficio_prorroga = $obj->oficio_prorroga;
 	$this->fecha_prorroga = $obj->fecha_prorroga;
-	$this->evaluacion = $obj->evaluacion;
-	$this->promocion = $obj->promocion;
+  $this->evaluacion = $obj->evaluacion;
+  $this->res_anteproyecto = $obj->res_anteproyecto;
+  $this->res_entrevista = $obj->res_entrevista;
+  $this->res_exani = $obj->res_exani;
+  $this->res_propedeutico = $obj->res_propedeutico;
+  
+	//$this->promocion = $obj->promocion;
 	
 	switch( $this->modalidad )
 	{
@@ -332,27 +337,28 @@
       
       for( $i=0; $i<$max; $i++ )
       {
-	$res->data_seek( $i );
+        $res->data_seek( $i );
         $obj = $res->fetch_object( );
-	
-	$this->id_aspirante[$i] = $obj->id_aspirante;
-	$this->id_orientacion[$i] = $obj->id_orientacion;
-	$this->id_pais[$i] = $obj->id_pais;
-	$this->modalidad[$i] = $obj->modalidad;
-	$this->apellido_paterno[$i] = $obj->apellido_paterno;
-	$this->apellido_materno[$i] = $obj->apellido_materno;
-	$this->nombre[$i] = $obj->nombre;
-	$this->trabajo[$i] = $obj->trabajo;
-	$this->evaluacion[$i] = $obj->evaluacion;
-	$this->promocion[$i] = $obj->promocion;
-	
-	switch( $this->evaluacion[$i] )
-	{
-	  case 1: $this->evaluacion_txt[$i] = "Aceptado"; break;
-	  case 2: $this->evaluacion_txt[$i] = "Aceptado con dispensa de promedio"; break;
-	  case 3: $this->evaluacion_txt[$i] = "Aceptado con adeudo de documentos"; break;
-	  case 4: $this->evaluacion_txt[$i] = "No admitido"; break;
-	}
+        
+        $this->id_aspirante[$i] = $obj->id_aspirante;
+        $this->id_orientacion[$i] = $obj->id_orientacion;
+        $this->id_pais[$i] = $obj->id_pais;
+        $this->modalidad[$i] = $obj->modalidad;
+        $this->apellido_paterno[$i] = $obj->apellido_paterno;
+        $this->apellido_materno[$i] = $obj->apellido_materno;
+        $this->nombre[$i] = $obj->nombre;
+        $this->trabajo[$i] = $obj->trabajo;
+        $this->evaluacion[$i] = $obj->evaluacion;
+        //$this->promocion[$i] = $obj->promocion;
+        
+        switch( $this->evaluacion[$i] )
+        {
+          case 0: $this->evaluacion_txt[$i] = ""; break;
+          case 1: $this->evaluacion_txt[$i] = "Aceptado"; break;
+          case 2: $this->evaluacion_txt[$i] = "Aceptado con dispensa de promedio"; break;
+          case 3: $this->evaluacion_txt[$i] = "Aceptado con adeudo de documentos"; break;
+          case 4: $this->evaluacion_txt[$i] = "No admitido"; break;
+        }
       }
       
       $res->close( );
@@ -366,9 +372,9 @@
       {
         $ext = pathinfo( $this->oficio_prorroga, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->oficio_prorroga, "../uploads/A-".$this->id_aspirante."-OP.".$ext );
-	$this->oficio_prorroga = "A-".$this->id_aspirante."-OP.".$ext;
-	
-	$sql = "update aspirantes set oficio_prorroga='$this->oficio_prorroga' where id_aspirante='$this->id_aspirante'";
+        $this->oficio_prorroga = "A-".$this->id_aspirante."-OP.".$ext;
+        
+        $sql = "update aspirantes set oficio_prorroga='$this->oficio_prorroga' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -376,9 +382,9 @@
       {
         $ext = pathinfo( $this->archivo1, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo1, "../uploads/A-".$this->id_aspirante."-1.".$ext );
-	$this->archivo1 = "A-".$this->id_aspirante."-1.".$ext;
-	
-	$sql = "update aspirantes set archivo1='$this->archivo1' where id_aspirante='$this->id_aspirante'";
+        $this->archivo1 = "A-".$this->id_aspirante."-1.".$ext;
+        
+        $sql = "update aspirantes set archivo1='$this->archivo1' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -386,9 +392,9 @@
       {
         $ext = pathinfo( $this->archivo2, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo2, "../uploads/A-".$this->id_aspirante."-2.".$ext );
-	$this->archivo2 = "A-".$this->id_aspirante."-2.".$ext;
-	
-	$sql = "update aspirantes set archivo2='$this->archivo2' where id_aspirante='$this->id_aspirante'";
+        $this->archivo2 = "A-".$this->id_aspirante."-2.".$ext;
+        
+        $sql = "update aspirantes set archivo2='$this->archivo2' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -396,9 +402,9 @@
       {
         $ext = pathinfo( $this->archivo3, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo3, "../uploads/A-".$this->id_aspirante."-3.".$ext );
-	$this->archivo3 = "A-".$this->id_aspirante."-3.".$ext;
-	
-	$sql = "update aspirantes set archivo3='$this->archivo3' where id_aspirante='$this->id_aspirante'";
+        $this->archivo3 = "A-".$this->id_aspirante."-3.".$ext;
+        
+        $sql = "update aspirantes set archivo3='$this->archivo3' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -406,9 +412,9 @@
       {
         $ext = pathinfo( $this->archivo4, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo4, "../uploads/A-".$this->id_aspirante."-4.".$ext );
-	$this->archivo4 = "A-".$this->id_aspirante."-4.".$ext;
-	
-	$sql = "update aspirantes set archivo4='$this->archivo4' where id_aspirante='$this->id_aspirante'";
+        $this->archivo4 = "A-".$this->id_aspirante."-4.".$ext;
+        
+        $sql = "update aspirantes set archivo4='$this->archivo4' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -416,9 +422,9 @@
       {
         $ext = pathinfo( $this->archivo5, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo5, "../uploads/A-".$this->id_aspirante."-5.".$ext );
-	$this->archivo5 = "A-".$this->id_aspirante."-5.".$ext;
-	
-	$sql = "update aspirantes set archivo5='$this->archivo5' where id_aspirante='$this->id_aspirante'";
+        $this->archivo5 = "A-".$this->id_aspirante."-5.".$ext;
+        
+        $sql = "update aspirantes set archivo5='$this->archivo5' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -426,9 +432,9 @@
       {
         $ext = pathinfo( $this->archivo6, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo6, "../uploads/A-".$this->id_aspirante."-6.".$ext );
-	$this->archivo6 = "A-".$this->id_aspirante."-6.".$ext;
-	
-	$sql = "update aspirantes set archivo6='$this->archivo6' where id_aspirante='$this->id_aspirante'";
+        $this->archivo6 = "A-".$this->id_aspirante."-6.".$ext;
+        
+        $sql = "update aspirantes set archivo6='$this->archivo6' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -436,9 +442,9 @@
       {
         $ext = pathinfo( $this->archivo7, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo7, "../uploads/A-".$this->id_aspirante."-7.".$ext );
-	$this->archivo7 = "A-".$this->id_aspirante."-7.".$ext;
-	
-	$sql = "update aspirantes set archivo7='$this->archivo7' where id_aspirante='$this->id_aspirante'";
+        $this->archivo7 = "A-".$this->id_aspirante."-7.".$ext;
+        
+        $sql = "update aspirantes set archivo7='$this->archivo7' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -446,9 +452,9 @@
       {
         $ext = pathinfo( $this->archivo8, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo8, "../uploads/A-".$this->id_aspirante."-8.".$ext );
-	$this->archivo8 = "A-".$this->id_aspirante."-8.".$ext;
-	
-	$sql = "update aspirantes set archivo8='$this->archivo8' where id_aspirante='$this->id_aspirante'";
+        $this->archivo8 = "A-".$this->id_aspirante."-8.".$ext;
+        
+        $sql = "update aspirantes set archivo8='$this->archivo8' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -456,9 +462,9 @@
       {
         $ext = pathinfo( $this->archivo9, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo9, "../uploads/A-".$this->id_aspirante."-9.".$ext );
-	$this->archivo9 = "A-".$this->id_aspirante."-9.".$ext;
-	
-	$sql = "update aspirantes set archivo9='$this->archivo9' where id_aspirante='$this->id_aspirante'";
+        $this->archivo9 = "A-".$this->id_aspirante."-9.".$ext;
+        
+        $sql = "update aspirantes set archivo9='$this->archivo9' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -466,9 +472,9 @@
       {
         $ext = pathinfo( $this->archivo10, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo10, "../uploads/A-".$this->id_aspirante."-10.".$ext );
-	$this->archivo10 = "A-".$this->id_aspirante."-10.".$ext;
-	
-	$sql = "update aspirantes set archivo10='$this->archivo10' where id_aspirante='$this->id_aspirante'";
+        $this->archivo10 = "A-".$this->id_aspirante."-10.".$ext;
+        
+        $sql = "update aspirantes set archivo10='$this->archivo10' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -476,9 +482,9 @@
       {
         $ext = pathinfo( $this->archivo11, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo11, "../uploads/A-".$this->id_aspirante."-11.".$ext );
-	$this->archivo11 = "A-".$this->id_aspirante."-11.".$ext;
-	
-	$sql = "update aspirantes set archivo11='$this->archivo11' where id_aspirante='$this->id_aspirante'";
+        $this->archivo11 = "A-".$this->id_aspirante."-11.".$ext;
+        
+        $sql = "update aspirantes set archivo11='$this->archivo11' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -486,9 +492,9 @@
       {
         $ext = pathinfo( $this->archivo12, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo12, "../uploads/A-".$this->id_aspirante."-12.".$ext );
-	$this->archivo12 = "A-".$this->id_aspirante."-12.".$ext;
-	
-	$sql = "update aspirantes set archivo12='$this->archivo12' where id_aspirante='$this->id_aspirante'";
+        $this->archivo12 = "A-".$this->id_aspirante."-12.".$ext;
+        
+        $sql = "update aspirantes set archivo12='$this->archivo12' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
@@ -496,16 +502,17 @@
       {
         $ext = pathinfo( $this->archivo13, PATHINFO_EXTENSION );
         rename( "../uploads/".$this->archivo13, "../uploads/A-".$this->id_aspirante."-13.".$ext );
-	$this->archivo13 = "A-".$this->id_aspirante."-13.".$ext;
-	
-	$sql = "update aspirantes set archivo13='$this->archivo13' where id_aspirante='$this->id_aspirante'";
+        $this->archivo13 = "A-".$this->id_aspirante."-13.".$ext;
+        
+        $sql = "update aspirantes set archivo13='$this->archivo13' where id_aspirante='$this->id_aspirante'";
         $res = $this->mysqli->query( $sql );
       }
       
       $sql = "update aspirantes set documento1='$this->documento1', documento2='$this->documento2', documento3='$this->documento3',
       documento4='$this->documento4', documento5='$this->documento5', documento6='$this->documento6', documento7='$this->documento7',
       documento8='$this->documento8', documento9='$this->documento9', documento10='$this->documento10', documento11='$this->documento11',
-      documento12='$this->documento12', documento13='$this->documento13', fecha_prorroga='$this->fecha_prorroga', evaluacion='$this->evaluacion' 
+      documento12='$this->documento12', documento13='$this->documento13', fecha_prorroga='$this->fecha_prorroga', evaluacion='$this->evaluacion',
+      res_anteproyecto='$this->res_anteproyecto', res_entrevista='$this->res_entrevista', res_exani='$this->res_exani', res_propedeutico='$this->res_propedeutico' 
       where id_aspirante='$this->id_aspirante'";
       $res = $this->mysqli->query( $sql );
       

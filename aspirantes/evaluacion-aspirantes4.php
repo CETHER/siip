@@ -182,6 +182,24 @@
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos3">
+          <td>Presentaci&oacute;n de ante-proyecto</td>
+          <td>Entrevista</td>
+          <td>EXANI III</td>
+          <td>Curso proped&eacuteutico</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td><?php echo $obj2->res_anteproyecto; ?>&nbsp;</td>
+          <td><?php echo $obj2->res_entrevista; ?>&nbsp;</td>
+          <td><?php echo $obj2->res_exani; ?>&nbsp;</td>
+          <td><?php echo $obj2->res_propedeutico; ?>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos3">
           <td colspan="4">Oficio de pr&oacute;rroga:</td>
         </tr>
         <tr class="textoTitulos4">
