@@ -1,6 +1,4 @@
 ﻿<?php
-// Notificar solamente errores de ejecución
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
   require_once "../core/modelo-usuarios.php";
   require_once "../core/modelo-programas.php";
   require_once "../core/modelo-orientaciones.php";
@@ -163,6 +161,18 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <?php
 	  }
 	?>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td align="center"><input type="button" onclick="location.href='excel-aspirantes.php?id_ciclo=<?php echo $_GET["id_ciclo"]; ?>'" value=" Exportar Excel " /></td>
+        </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
