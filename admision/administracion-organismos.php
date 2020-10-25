@@ -113,8 +113,20 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           </td>
         </tr>
         <?php
-	  }
-	?>
+          }
+        ?>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td align="center"><input type="button" onclick="location.href='excel-organismos.php'" value=" Exportar Excel " /></td>
+        </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>

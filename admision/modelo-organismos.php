@@ -5,6 +5,7 @@
   
   require_once "../core/conexion.php";
   require_once "../core/modelo-paises.php";
+  require_once "../core/modelo-estados.php";
   
   class Organismos extends Conexion 
   {
@@ -129,9 +130,13 @@
         $obj4 = new Paises( );
         $obj4->id_pais = $obj->id_pais;
         $obj4->obtenerPais( );
+
+        $obj5 = new Estados( );
+        $obj5->id_estado = $obj->id_estado;
+        $obj5->obtenerEstado( );
 	
         $this->id_organismo[$i] = $obj->id_organismo;
-        $this->id_estado[$i] = $obj->id_estado;
+        $this->estado[$i] = $obj5->nombre;
         $this->pais[$i] = $obj4->nombre;
         $this->nombre[$i] = $obj->nombre;
         $this->titular[$i] = $obj->titular;
