@@ -104,6 +104,7 @@ function verificarContrasena( )
           <td>&nbsp;</td>
         </tr>
         <?php } ?>
+        <!-- DATOS GENERALES DE DOCENTE -->
         <tr class="textoTablas1">
           <td colspan="4">DATOS GENERALES</td>
         </tr>
@@ -178,6 +179,123 @@ function verificarContrasena( )
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
+        <!-- DATOS ACADÉMICOS DE DOCENTE -->
+        <tr class="textoTablas1">
+          <td colspan="4">DATOS ACAD&Eacute;MICOS</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos3">
+          <td>Modalidad &bull;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td><input type="radio" name="modalidad" value="1" required="required" /> Tiempo Completo</td>
+          <td><input type="radio" name="modalidad" value="2" required="required" /> Tiempo Parcial</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <tr class="textoTitulos3">
+          <td colspan="2">Instituci&oacute;n en donde obtuvo el &uacute;ltimo grado de estudios &bull;</td>
+          <td>&Uacute;ltimo grado de estudios &bull;</td>
+          <td>Fecha de obtenci&oacute;n del &uacute;ltimo grado </td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td colspan="2"><input type="text" name="institucion" size="50" maxlength="50" required="required" /></td>
+          <td>
+          <select name="escolaridad" required="required">
+            <option value=''></option>
+            <option value='1'>Licenciatura</option>
+          </select>
+          </td>
+          <td><input type="date" name="fecha_titulacion" placeholder="aaaa-mm-dd" /></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <tr class="textoTitulos3">
+          <td>N&uacute;mero de CVU </td>
+          <td>Miembre del S.N.I. </td>
+          <td>Nivel del S.N.I.</td>
+          <td>Perfil PRODEP </td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td><input type="text" name="numero_cvu" size="25" maxlength="50" /></td>
+          <td>
+            <input type="radio" name="miembro_sni" value="1" required="required" /> Si &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="miembro_sni" value="2" required="required" /> No
+          </td>
+          <td>
+          <select name="nivel_sni" >
+            <option value=''></option>
+            <option value='1'>Licenciatura</option>
+          </select>
+          </td>
+          <td>
+          <select name="perfil_prodep" >
+            <option value=''></option>
+            <option value='1'>Licenciatura</option>
+          </select>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <tr class="textoTitulos3">
+          <td colspan="2">L&iacute;nea de Generaci&oacute;n y Aplicaci&oacute;n del Conocimiento (LGAC) </td>
+          <td colspan="2">Cuerpo acad&eacute;mico al que pertenece </td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td colspan="2"><input type="text" name="lgac" size="50" maxlength="50" /></td>
+          <td colspan="2">
+          <select name="cuerpo_academico" >
+            <option value=''></option>
+            <option value='1'>Licenciatura Licenciatura</option>
+          </select>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <tr class="textoTitulos3">
+          <td colspan="4">Nombre de los proyectos de investigaci&oacute;n que desarrolla </td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td colspan="4" valign="top"><textarea name="proyectos" cols="102" rows="10" required="required"></textarea></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <!-- DATOS DE INGRESO DE SESIÓN DE DOCENTE -->
         <tr class="textoTablas1">
           <td colspan="4">DATOS DE INGRESO</td>
         </tr>
