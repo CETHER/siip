@@ -39,6 +39,17 @@
   $obj2->sexo = $_POST["sexo"];
   $obj2->fecha_nacimiento = $_POST["fecha_nacimiento"];
   $obj2->lugar_nacimiento = $_POST["lugar_nacimiento"];
+  $obj2->modalidad = $_POST["modalidad"];
+  $obj2->escolaridad = $_POST["escolaridad"];
+  $obj2->institucion = $_POST["institucion"];
+  $obj2->fecha_titulacion = $_POST["fecha_titulacion"];
+  $obj2->numero_cvu = $_POST["numero_cvu"];
+  $obj2->miembro_sni = $_POST["miembro_sni"];
+  $obj2->nivel_sni = $_POST["nivel_sni"];
+  $obj2->perfil_prodep = $_POST["perfil_prodep"];
+  $obj2->cuerpo_academico = $_POST["cuerpo_academico"];
+  $obj2->lgac = $_POST["lgac"];
+  $obj2->proyectos = $_POST["proyectos"];
   $obj2->accesos_fallidos = 0;
   $obj2->status = 1;
   

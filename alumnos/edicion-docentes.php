@@ -108,6 +108,7 @@ function verificarContrasena( )
           <td>&nbsp;</td>
         </tr>
         <?php } ?>
+        <!-- DATOS GENERALES DE DOCENTE -->
         <tr class="textoTablas1">
           <td colspan="4">DATOS GENERALES</td>
         </tr>
@@ -131,8 +132,8 @@ function verificarContrasena( )
             if( $obj2->fotografia!=null )
             {
               printf( "<a href='../uploads/%s' target='_blank'><img src='../uploads/%s' height='100' /></a>", $obj2->fotografia, $obj2->fotografia );
-	    }
-	  ?>
+            }
+          ?>
           </td>
         </tr>
         <tr>
@@ -157,7 +158,7 @@ function verificarContrasena( )
           <td>
           <input type="text" name="nombre" size="25" maxlength="50" required="required" value="<?php echo $obj2->nombre; ?>" /></td>
           <td>
-	  <input type="radio" name="sexo" value="1" required="required" <?php if( $obj2->sexo==1 ) { echo "checked='checked'"; } ?> /> Masculino
+	        <input type="radio" name="sexo" value="1" required="required" <?php if( $obj2->sexo==1 ) { echo "checked='checked'"; } ?> /> Masculino
           <input type="radio" name="sexo" value="2" required="required" <?php if( $obj2->sexo==2 ) { echo "checked='checked'"; } ?> /> Femenino
           </td>
         </tr>
@@ -189,15 +190,15 @@ function verificarContrasena( )
             for( $i=0; $i<$max; $i++ )
             {
               if( $obj3->id_pais[$i]==$obj2->id_pais )
-	      {
-                printf( "<option value='%d' selected='selected'>%s</option>\n", $obj3->id_pais[$i], $obj3->nombre[$i] );
-	      }
-	      else
-	      {
-                printf( "<option value='%d'>%s</option>\n", $obj3->id_pais[$i], $obj3->nombre[$i] );
-	      }
+              {
+                      printf( "<option value='%d' selected='selected'>%s</option>\n", $obj3->id_pais[$i], $obj3->nombre[$i] );
+              }
+              else
+              {
+                      printf( "<option value='%d'>%s</option>\n", $obj3->id_pais[$i], $obj3->nombre[$i] );
+              }
             }
-	  ?>
+	        ?>
           </select>
           </td>
           <td>&nbsp;</td>
@@ -208,6 +209,124 @@ function verificarContrasena( )
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
+
+        <!-- DATOS ACADÉMICOS DE DOCENTE -->
+        <tr class="textoTablas1">
+          <td colspan="4">DATOS ACAD&Eacute;MICOS</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos3">
+          <td>Modalidad &bull;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td><input type="radio" name="modalidad" value="1" required="required" <?php if( $obj2->modalidad==1 ) { echo "checked='checked'"; } ?> /> Tiempo Completo</td>
+          <td><input type="radio" name="modalidad" value="2" required="required" <?php if( $obj2->modalidad==2 ) { echo "checked='checked'"; } ?> /> Tiempo Parcial</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <tr class="textoTitulos3">
+          <td colspan="2">Instituci&oacute;n en donde obtuvo el &uacute;ltimo grado de estudios &bull;</td>
+          <td>&Uacute;ltimo grado de estudios &bull;</td>
+          <td>Fecha de obtenci&oacute;n del &uacute;ltimo grado </td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td colspan="2"><input type="text" name="institucion" size="50" maxlength="50" required="required" value="<?php echo $obj2->institucion; ?>" /></td>
+          <td>
+          <select name="escolaridad" required="required">
+            <option value=''></option>
+            <option value='1' <?php if( $obj2->escolaridad==1 ) { echo "selected='selected'"; } ?>>Licenciatura</option>
+          </select>
+          </td>
+          <td><input type="date" name="fecha_titulacion" placeholder="aaaa-mm-dd" value="<?php echo $obj2->fecha_titulacion; ?>" /></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <tr class="textoTitulos3">
+          <td>N&uacute;mero de CVU </td>
+          <td>Miembre del S.N.I. </td>
+          <td>Nivel del S.N.I.</td>
+          <td>Perfil PRODEP </td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td><input type="text" name="numero_cvu" size="25" maxlength="50" value="<?php echo $obj2->numero_cvu; ?>" /></td>
+          <td>
+            <input type="radio" name="miembro_sni" value="1" required="required" <?php if( $obj2->miembro_sni==1 ) { echo "checked='checked'"; } ?> /> Si &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="miembro_sni" value="2" required="required" <?php if( $obj2->miembro_sni==2 ) { echo "checked='checked'"; } ?> /> No
+          </td>
+          <td>
+          <select name="nivel_sni" >
+            <option value=''></option>
+            <option value='1' <?php if( $obj2->nivel_sni==1 ) { echo "selected='selected'"; } ?>>Licenciatura</option>
+          </select>
+          </td>
+          <td>
+          <select name="perfil_prodep" >
+            <option value=''></option>
+            <option value='1' <?php if( $obj2->perfil_prodep==1 ) { echo "selected='selected'"; } ?>>Licenciatura</option>
+          </select>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <tr class="textoTitulos3">
+          <td colspan="2">L&iacute;nea de Generaci&oacute;n y Aplicaci&oacute;n del Conocimiento (LGAC) </td>
+          <td colspan="2">Cuerpo acad&eacute;mico al que pertenece </td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td colspan="2"><input type="text" name="lgac" size="50" maxlength="50" value="<?php echo $obj2->lgac; ?>" /></td>
+          <td colspan="2">
+          <select name="cuerpo_academico" >
+            <option value=''></option>
+            <option value='1' <?php if( $obj2->cuerpo_academico==1 ) { echo "selected='selected'"; } ?>>Licenciatura Licenciatura</option>
+          </select>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <tr class="textoTitulos3">
+          <td colspan="4">Nombre de los proyectos de investigaci&oacute;n que desarrolla </td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td colspan="4" valign="top"><textarea name="proyectos" cols="102" rows="10" required="required"><?php echo $obj2->proyectos; ?></textarea></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+
+        <!-- DATOS DE INGRESO DE SESIÓN DE DOCENTE -->
         <tr class="textoTablas1">
           <td colspan="4">DATOS DE INGRESO</td>
         </tr>
