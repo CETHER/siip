@@ -130,43 +130,43 @@
       
       if( $max!=0 )
       {
-	$res->data_seek( 0 );
-        $obj = $res->fetch_object( );
-	
-	$this->id_programa = $obj->id_programa;
-	$this->id_orientacion = $obj->id_orientacion;
-	$this->id_ciclo = $obj->id_ciclo;
-	$this->id_pais = $obj->id_pais;
-	$this->id_aspirante = $obj->id_aspirante;
-	$this->id_egresado = $obj->id_egresado;
-	$this->id_titulado = $obj->id_titulado;
-	$this->modalidad = $obj->modalidad;
-	$this->fotografia = $obj->fotografia;
-	$this->codigo = $obj->codigo;
-	$this->contrasena = $obj->contrasena;
-	$this->apellido_paterno = $obj->apellido_paterno;
-	$this->apellido_materno = $obj->apellido_materno;
-	$this->nombre = $obj->nombre;
-	$this->sexo = $obj->sexo;
-	$this->fecha_nacimiento = $obj->fecha_nacimiento;
-	$this->lugar_nacimiento = $obj->lugar_nacimiento;
-	$this->director_tesis = $obj->director_tesis;
-	$this->asesor_tesis1 = $obj->asesor_tesis1;
-	$this->asesor_tesis2 = $obj->asesor_tesis2;
-	$this->asesor_tesis3 = $obj->asesor_tesis3;
-	$this->accesos_fallidos = $obj->accesos_fallidos;
-	
-	switch( $this->modalidad )
-	{
-	  case 1: $this->modalidad_txt = "Tiempo completo"; break;
-	  case 2: $this->modalidad_txt = "Tiempo parcial"; break;
-	}
-	
-	switch( $this->sexo )
-	{
-	  case 1: $this->sexo_txt = "Masculino"; break;
-	  case 2: $this->sexo_txt = "Femenino"; break;
-	}	
+        $res->data_seek( 0 );
+              $obj = $res->fetch_object( );
+        
+        $this->id_programa = $obj->id_programa;
+        $this->id_orientacion = $obj->id_orientacion;
+        $this->id_ciclo = $obj->id_ciclo;
+        $this->id_pais = $obj->id_pais;
+        $this->id_aspirante = $obj->id_aspirante;
+        $this->id_egresado = $obj->id_egresado;
+        $this->id_titulado = $obj->id_titulado;
+        $this->modalidad = $obj->modalidad;
+        $this->fotografia = $obj->fotografia;
+        $this->codigo = $obj->codigo;
+        $this->contrasena = $obj->contrasena;
+        $this->apellido_paterno = $obj->apellido_paterno;
+        $this->apellido_materno = $obj->apellido_materno;
+        $this->nombre = $obj->nombre;
+        $this->sexo = $obj->sexo;
+        $this->fecha_nacimiento = $obj->fecha_nacimiento;
+        $this->lugar_nacimiento = $obj->lugar_nacimiento;
+        $this->director_tesis = $obj->director_tesis;
+        $this->asesor_tesis1 = $obj->asesor_tesis1;
+        $this->asesor_tesis2 = $obj->asesor_tesis2;
+        $this->asesor_tesis3 = $obj->asesor_tesis3;
+        $this->accesos_fallidos = $obj->accesos_fallidos;
+        
+        switch( $this->modalidad )
+        {
+          case 1: $this->modalidad_txt = "Tiempo completo"; break;
+          case 2: $this->modalidad_txt = "Tiempo parcial"; break;
+        }
+        
+        switch( $this->sexo )
+        {
+          case 1: $this->sexo_txt = "Masculino"; break;
+          case 2: $this->sexo_txt = "Femenino"; break;
+        }	
       }
       
       $res->close( );

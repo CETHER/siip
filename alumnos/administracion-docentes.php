@@ -145,14 +145,14 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <td>ACCIONES</td>
         </tr>
         <?php
-	  $max = count( $obj3->id_docente );
+	        $max = count( $obj3->id_docente );
           
           for( $i=0; $i<$max; $i++ )
           {
-	    $obj4 = new Paises( );
+	          $obj4 = new Paises( );
             $obj4->id_pais = $obj3->id_pais[$i];
             $obj4->obtenerPais( );
-	?>
+	      ?>
         <tr class="textoTablas2">
           <td><?php echo $obj3->codigo[$i]; ?>&nbsp;</td>
           <td><?php echo $obj3->apellido_paterno[$i]." ".$obj3->apellido_materno[$i]." ".$obj3->nombre[$i]; ?>&nbsp;</td>
@@ -169,8 +169,21 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           </td>
         </tr>
         <?php
-	  }
-	?>
+          }
+        ?>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td align="center"><input type="button" onclick="location.href='excel-docentes.php'" value=" Exportar Excel " /></td>
+        </tr>
+        <tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>

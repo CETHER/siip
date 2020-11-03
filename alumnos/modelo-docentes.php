@@ -4,6 +4,7 @@
   */
   
   require_once "../core/conexion.php";
+  require_once "../core/modelo-paises.php";
   
   class Docentes extends Conexion 
   {
@@ -31,6 +32,7 @@
     public $accesos_fallidos;
     public $status;
     public $sexo_txt;
+    public $modalidad_txt;
     public $filtro;
     
     
@@ -173,15 +175,46 @@
       
       for( $i=0; $i<$max; $i++ )
       {
+
+        $obj4 = new Paises( );
+        $obj4->id_pais = $obj->id_pais;
+        $obj4->obtenerPais( );
+
 	      $res->data_seek( $i );
         $obj = $res->fetch_object( );
 	
         $this->id_docente[$i] = $obj->id_docente;
         $this->id_pais[$i] = $obj->id_pais;
+        $this->pais[$i] = $obj4->nombre;
         $this->codigo[$i] = $obj->codigo;
         $this->apellido_paterno[$i] = $obj->apellido_paterno;
         $this->apellido_materno[$i] = $obj->apellido_materno;
         $this->nombre[$i] = $obj->nombre;
+        $this->sexo[$i] = $obj->sexo;
+        $this->fecha_nacimiento[$i] = $obj->fecha_nacimiento;
+        $this->lugar_nacimiento[$i] = $obj->lugar_nacimiento;
+        $this->modalidad[$i] = $obj->modalidad;
+        $this->escolaridad[$i] = $obj->escolaridad;
+        $this->institucion[$i] = $obj->institucion;
+        $this->fecha_titulacion[$i] = $obj->fecha_titulacion;
+        $this->numero_cvu[$i] = $obj->numero_cvu;
+        $this->miembro_sni[$i] = $obj->miembro_sni;
+        $this->nivel_sni[$i] = $obj->nivel_sni;
+        $this->perfil_prodep[$i] = $obj->perfil_prodep;
+        $this->cuerpo_academico[$i] = $obj->cuerpo_academico;
+        $this->lgac[$i] = $obj->lgac;
+        $this->proyectos[$i] = $obj->proyectos;
+        switch( $this->sexo[$i] )
+        {
+          case 1: $this->sexo_txt[$i] = "Masculino"; break;
+          case 2: $this->sexo_txt[$i] = "Femenino"; break;
+        }
+        switch( $this->modalidad[$i] )
+        {
+          case 0: $this->modalidad_txt[$i] = ""; break;
+          case 1: $this->modalidad_txt[$i] = "Tiempo completo"; break;
+          case 2: $this->modalidad_txt[$i] = "Tiempo parcial"; break;
+        }
       }
       
       $res->close( );
