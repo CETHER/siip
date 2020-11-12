@@ -186,7 +186,6 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <td align="center"><input type="button" onclick="location.href='excel-docentes.php'" value=" Exportar Excel " /></td>
         </tr>
         <tr>
-        <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>

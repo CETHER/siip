@@ -128,9 +128,9 @@ function confirmarBaja( )
         </tr>
         <tr class="textoTitulos4">
           <td colspan="4">
-          <a href="consulta-docentes.php?id_docente=<?php echo $obj2->id_docente; ?>" class="textoTitulos4" target="_blank">
-	        <?php echo $obj2->apellido_paterno." ".$obj2->apellido_materno." ".$obj2->nombre; ?>
-          </a>
+            <a href="consulta-docentes.php?id_docente=<?php echo $obj2->id_docente; ?>" class="textoTitulos4" target="_blank">
+            <?php echo $obj2->apellido_paterno." ".$obj2->apellido_materno." ".$obj2->nombre; ?>
+            </a>
           </td>
         </tr>
         <tr>
@@ -151,40 +151,42 @@ function confirmarBaja( )
         </tr>
         <tr class="textoTitulos3">
           <td>Nombre de la red &bull;</td>
-          <td colspan="3">Fecha de inicio &bull;</td>
-        </tr>
-        <tr class="textoTitulos4">
-          <td ><input type="text" name="nombre" size="50" required="required" value="<?php echo $obj4->nombre; ?>" /></td>
-          <td colspan="2"><input type="date" name="fecha_inicio" placeholder="aaaa-mm-dd" required="required" value="<?php echo $obj4->fecha_inicio; ?>" /></td>
-          <td align="center">
-          <input type="submit" name="submit" value="   Enviar   " />
-          <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-          <input type="hidden" name="id_red_docente" value="<?php echo $obj4->id_red_docente; ?>" />
-          </td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr class="textoTitulos3">
-          <td>Instituciones participantes en la red &bull;</td>
           <td colspan="3">Categor&iacute;a &bull;</td>
         </tr>
         <tr class="textoTitulos4">
-          <td rowspan="4"><textarea name="instituciones" cols="60" rows="6" maxlength="250" required="required"><?php echo $obj4->instituciones; ?></textarea></td>
-          
-          <td>
-          <input type="radio" name="categoria" value="1" required="required" <?php if( $obj2->categoria==1 ) { echo "checked='checked'"; } ?> />
-          Nacional
+          <td >
+            <input type="text" name="nombre" size="50" required="required" value="<?php echo $obj4->nombre; ?>" />
           </td>
           <td>
-          <input type="radio" name="categoria" value="2" required="required" <?php if( $obj2->categoria==2 ) { echo "checked='checked'"; } ?> />
-          Internacional
+            <input type="radio" name="categoria" value="1" required="required" <?php if( $obj4->categoria==1 ) { echo "checked='checked'"; } ?> /> Nacional
+          </td>
+          <td>
+            <input type="radio" name="categoria" value="2" required="required" <?php if( $obj4->categoria==2 ) { echo "checked='checked'"; } ?> /> Internacional
           </td>
           <td align="center">
+            <input type="submit" name="submit" value="   Enviar   " />
+            <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
+            <input type="hidden" name="id_red_docente" value="<?php echo $obj4->id_red_docente; ?>" />
           </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos3">
+          <td>Instituciones participantes en la red </td>
+          <td colspan="3">Fecha de inicio</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td rowspan="4">
+            <textarea name="instituciones" cols="60" rows="6" maxlength="250" ><?php echo $obj4->instituciones; ?></textarea>
+          </td>
+          <td colspan="2">
+            <input type="date" name="fecha_inicio" placeholder="aaaa-mm-dd" value="<?php echo $obj4->fecha_inicio; ?>" />
+          </td>
+          <td align="center"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -192,10 +194,12 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos3">
-        <td colspan="3">Url</td>
+          <td colspan="3">Url</td>
         </tr>
         <tr class="textoTitulos4">
-        <td colspan="3"><input type="text" name="url" size="50" required="required" value="<?php echo $obj4->url; ?>" /></td>
+          <td colspan="3">
+            <input type="text" name="url" size="50" value="<?php echo $obj4->url; ?>" />
+          </td>
         </tr>
         </form>
         <tr>
@@ -224,19 +228,19 @@ function confirmarBaja( )
             <table border="0" cellspacing="0" cellpadding="0" align="center">
               <tr>
                 <td>
-                <form id="form2" name="form2" method="get" action="redes-docentes.php">
-                <input type="image" name="submit" src="../images/icon-edit.png" />
-                <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-                <input type="hidden" name="id_red_docente" value="<?php echo $obj3->id_red_docente[$i]; ?>" />
-                </form>
+                  <form id="form2" name="form2" method="get" action="redes-docentes.php">
+                    <input type="image" name="submit" src="../images/icon-edit.png" />
+                    <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
+                    <input type="hidden" name="id_red_docente" value="<?php echo $obj3->id_red_docente[$i]; ?>" />
+                  </form>
                 </td>
                 <td>&nbsp;</td>
                 <td>
-                <form id="form3" name="form3" method="post" action="redes-docentes3.php" onclick="return confirmarBaja( )">
-                <input type="image" name="submit" src="../images/icon-delete.png" />
-                <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-                <input type="hidden" name="id_red_docente" value="<?php echo $obj3->id_red_docente[$i]; ?>" />
-                </form>
+                  <form id="form3" name="form3" method="post" action="redes-docentes3.php" onclick="return confirmarBaja( )">
+                    <input type="image" name="submit" src="../images/icon-delete.png" />
+                    <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
+                    <input type="hidden" name="id_red_docente" value="<?php echo $obj3->id_red_docente[$i]; ?>" />
+                  </form>
                 </td>
               </tr>
             </table>
@@ -245,6 +249,23 @@ function confirmarBaja( )
         <?php
           }
         ?>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td align="center">
+            <form id="form4" name="form4" method="post" action="excel-redes-docentes.php">
+              <input type="submit" value=" Exportar Excel " />
+              <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
+            </form>
+          </td>
+        </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
