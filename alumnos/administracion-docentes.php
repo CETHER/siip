@@ -158,6 +158,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <td><?php echo $obj3->apellido_paterno[$i]." ".$obj3->apellido_materno[$i]." ".$obj3->nombre[$i]; ?>&nbsp;</td>
           <td><?php echo $obj4->nombre; ?>&nbsp;</td>
           <td align="center">
+          <a href="libros-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+          <img src="../images/icon-attach.png" width="16" height="16" /></a>
           <a href="redes-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
           <img src="../images/icon-attach.png" width="16" height="16" /></a>
           <a href="cvu-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
