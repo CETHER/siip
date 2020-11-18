@@ -219,6 +219,10 @@ function verificarContrasena( )
           <select name="escolaridad" required="required">
             <option value=''></option>
             <option value='1'>Licenciatura</option>
+            <option value='2'>Especialidad</option>
+            <option value='3'>Maestr&iacute;a</option>
+            <option value='4'>Doctorado</option>
+            <option value='5'>Postdoctorado</option>
           </select>
           </td>
           <td><input type="date" name="fecha_titulacion" placeholder="aaaa-mm-dd" /></td>
@@ -245,14 +249,16 @@ function verificarContrasena( )
           <td>
           <select name="nivel_sni" >
             <option value=''></option>
-            <option value='1'>Licenciatura</option>
+            <option value='1'>Candidato</option>
+            <option value='2'>Nivel I</option>
+            <option value='3'>Nivel II</option>
+            <option value='4'>Nivel III</option>
+            <option value='5'>Em&eacute;rito</option>
           </select>
           </td>
           <td>
-          <select name="perfil_prodep" >
-            <option value=''></option>
-            <option value='1'>Licenciatura</option>
-          </select>
+            <input type="radio" name="perfil_prodep" value="1" required="required" /> Si &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="perfil_prodep" value="2" required="required" /> No
           </td>
         </tr>
         <tr>

@@ -250,6 +250,10 @@ function verificarContrasena( )
           <select name="escolaridad" required="required">
             <option value=''></option>
             <option value='1' <?php if( $obj2->escolaridad==1 ) { echo "selected='selected'"; } ?>>Licenciatura</option>
+            <option value='2' <?php if( $obj2->escolaridad==2 ) { echo "selected='selected'"; } ?>>Especialidad</option>
+            <option value='3' <?php if( $obj2->escolaridad==3 ) { echo "selected='selected'"; } ?>>Maestr&iacute;a</option>
+            <option value='4' <?php if( $obj2->escolaridad==4 ) { echo "selected='selected'"; } ?>>Doctorado</option>
+            <option value='5' <?php if( $obj2->escolaridad==5 ) { echo "selected='selected'"; } ?>>Postdoctorado</option>
           </select>
           </td>
           <td><input type="date" name="fecha_titulacion" placeholder="aaaa-mm-dd" value="<?php echo $obj2->fecha_titulacion; ?>" /></td>
@@ -276,14 +280,16 @@ function verificarContrasena( )
           <td>
           <select name="nivel_sni" >
             <option value=''></option>
-            <option value='1' <?php if( $obj2->nivel_sni==1 ) { echo "selected='selected'"; } ?>>Licenciatura</option>
+            <option value='1' <?php if( $obj2->nivel_sni==1 ) { echo "selected='selected'"; } ?>>Candidato</option>
+            <option value='2' <?php if( $obj2->nivel_sni==2 ) { echo "selected='selected'"; } ?>>Nivel I</option>
+            <option value='3' <?php if( $obj2->nivel_sni==3 ) { echo "selected='selected'"; } ?>>Nivel II</option>
+            <option value='4' <?php if( $obj2->nivel_sni==4 ) { echo "selected='selected'"; } ?>>Nivel III</option>
+            <option value='5' <?php if( $obj2->nivel_sni==5 ) { echo "selected='selected'"; } ?>>Em&eacute;rito</option>
           </select>
           </td>
           <td>
-          <select name="perfil_prodep" >
-            <option value=''></option>
-            <option value='1' <?php if( $obj2->perfil_prodep==1 ) { echo "selected='selected'"; } ?>>Licenciatura</option>
-          </select>
+            <input type="radio" name="perfil_prodep" value="1" required="required" <?php if( $obj2->perfil_prodep==1 ) { echo "checked='checked'"; } ?> /> Si &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="perfil_prodep" value="2" required="required" <?php if( $obj2->perfil_prodep==2 ) { echo "checked='checked'"; } ?> /> No
           </td>
         </tr>
         <tr>
