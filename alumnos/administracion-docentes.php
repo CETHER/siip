@@ -158,20 +158,22 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <td><?php echo $obj3->apellido_paterno[$i]." ".$obj3->apellido_materno[$i]." ".$obj3->nombre[$i]; ?>&nbsp;</td>
           <td><?php echo $obj4->nombre; ?>&nbsp;</td>
           <td align="center">
-          <a href="articulos-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
-          <img src="../images/icon-attach.png" width="16" height="16" /></a>
-          <a href="libros-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
-          <img src="../images/icon-attach.png" width="16" height="16" /></a>
-          <a href="redes-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
-          <img src="../images/icon-attach.png" width="16" height="16" /></a>
-          <a href="cvu-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
-          <img src="../images/icon-attach.png" width="16" height="16" /></a>
-          <a href="consulta-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
-          <img src="../images/icon-search.png" width="16" height="16" /></a>
-          <a href="edicion-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
-          <img src="../images/icon-edit.png" width="16" height="16" /></a>
-          <a href="baja-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
-          <img src="../images/icon-delete.png" width="16" height="16" /></a>
+            <a href="capitulos-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+            <img src="../images/icon-attach.png" width="16" height="16" /></a>
+            <a href="articulos-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+            <img src="../images/icon-attach.png" width="16" height="16" /></a>
+            <a href="libros-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+            <img src="../images/icon-attach.png" width="16" height="16" /></a>
+            <a href="redes-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+            <img src="../images/icon-attach.png" width="16" height="16" /></a>
+            <a href="cvu-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+            <img src="../images/icon-attach.png" width="16" height="16" /></a>
+            <a href="consulta-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+            <img src="../images/icon-search.png" width="16" height="16" /></a>
+            <a href="edicion-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+            <img src="../images/icon-edit.png" width="16" height="16" /></a>
+            <a href="baja-docentes.php?id_docente=<?php echo $obj3->id_docente[$i]; ?>">
+            <img src="../images/icon-delete.png" width="16" height="16" /></a>
           </td>
         </tr>
         <?php
