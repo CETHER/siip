@@ -3,7 +3,7 @@
   require_once "../core/modelo-usuarios.php";
   require_once "../core/modelo-paises.php";
   require_once "modelo-docentes.php";
-  require_once "modelo-libros-docentes.php";
+  require_once "modelo-articulos-docentes.php";
   
   session_start( );
   $obj = new Usuarios( );
@@ -16,15 +16,15 @@
   $obj2->id_docente = $_GET["id_docente"];
   $obj2->obtenerDocente( );
   
-  $obj3 = new Libros_Docentes( );
+  $obj3 = new Articulos_Docentes( );
   $obj3->id_docente = $obj2->id_docente;
-  $obj3->listaLibrosDocente( );
+  $obj3->listaArticulosDocente( );
   
-  if( isset( $_GET["id_libro_docente"] ) ) 
+  if( isset( $_GET["id_articulo_docente"] ) ) 
   {
-    $obj4 = new Libros_Docentes( );
-    $obj4->id_libro_docente = $_GET["id_libro_docente"];
-    $obj4->obtenerLibro( );
+    $obj4 = new Articulos_Docentes( );
+    $obj4->id_articulo_docente = $_GET["id_articulo_docente"];
+    $obj4->obtenerArticulo( );
   }
   
   $obj6 = new Paises( );
@@ -86,7 +86,7 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos2">
-          <td colspan="4">Libros de docentes</td>
+          <td colspan="4">Art&iacute;culos de docentes</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -119,9 +119,9 @@ function confirmarBaja( )
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
-        <form id="form1" name="form1" method="post" action="libros-docentes2.php" enctype="multipart/form-data">
+        <form id="form1" name="form1" method="post" action="articulos-docentes2.php" enctype="multipart/form-data">
         <tr class="textoTablas1">
-          <td colspan="4">DATOS DEL LIBRO</td>
+          <td colspan="4">DATOS DEL ART&Iacute;CULO</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -130,16 +130,16 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos3">
-          <td colspan="2">T&iacute;tulo del libro &bull;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
+          <td colspan="1">T&iacute;tulo del art&iacute;culo &bull;</td>
+          <td colspan="3">Revista &bull;</td>
         </tr>
         <tr class="textoTitulos4">
-          <td colspan="2">
-            <input type="text" name="titulo" size="70" required="required" value="<?php echo $obj4->titulo; ?>" />
+          <td colspan="1">
+            <input type="text" name="titulo" size="40" required="required" value="<?php echo $obj4->titulo; ?>" />
           </td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
+          <td colspan="3">
+            <input type="text" name="revista" size="40" required="required" value="<?php echo $obj4->revista; ?>" />
+          </td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -214,7 +214,7 @@ function confirmarBaja( )
           <td>
             <input type="submit" name="submit" value="   Enviar   " />
             <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-            <input type="hidden" name="id_libro_docente" value="<?php echo $obj4->id_libro_docente; ?>" />
+            <input type="hidden" name="id_articulo_docente" value="<?php echo $obj4->id_articulo_docente; ?>" />
           </td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -233,13 +233,13 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTablas1">
-          <td>T&Iacute;TULO DEL LIBRO</td>
+          <td>T&Iacute;TULO DEL ART&Iacute;CULO</td>
           <td>EDITORIAL</td>
           <td>AÑO</td>
           <td>ACCIONES</td>
         </tr>
         <?php
-	        $max = count( $obj3->id_libro_docente );
+	        $max = count( $obj3->id_articulo_docente );
           
           for( $i=0; $i<$max; $i++ )
           {
@@ -252,18 +252,18 @@ function confirmarBaja( )
             <table border="0" cellspacing="0" cellpadding="0" align="center">
               <tr>
                 <td>
-                  <form id="form2" name="form2" method="get" action="libros-docentes.php">
+                  <form id="form2" name="form2" method="get" action="articulos-docentes.php">
                     <input type="image" name="submit" src="../images/icon-edit.png" />
                     <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-                    <input type="hidden" name="id_libro_docente" value="<?php echo $obj3->id_libro_docente[$i]; ?>" />
+                    <input type="hidden" name="id_articulo_docente" value="<?php echo $obj3->id_articulo_docente[$i]; ?>" />
                   </form>
                 </td>
                 <td>&nbsp;</td>
                 <td>
-                  <form id="form3" name="form3" method="post" action="libros-docentes3.php" onclick="return confirmarBaja( )">
+                  <form id="form3" name="form3" method="post" action="articulos-docentes3.php" onclick="return confirmarBaja( )">
                     <input type="image" name="submit" src="../images/icon-delete.png" />
                     <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-                    <input type="hidden" name="id_libro_docente" value="<?php echo $obj3->id_libro_docente[$i]; ?>" />
+                    <input type="hidden" name="id_articulo_docente" value="<?php echo $obj3->id_articulo_docente[$i]; ?>" />
                   </form>
                 </td>
               </tr>
@@ -284,7 +284,7 @@ function confirmarBaja( )
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td align="center">
-            <form id="form4" name="form4" method="post" action="excel-libros-docentes.php">
+            <form id="form4" name="form4" method="post" action="excel-articulos-docentes.php">
               <input type="submit" value=" Exportar Excel " />
               <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
             </form>
