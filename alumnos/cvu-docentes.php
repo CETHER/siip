@@ -1,5 +1,4 @@
 ﻿<?php
-  error_reporting(E_ALL ^ E_NOTICE);
   require_once "../core/modelo-usuarios.php";
   require_once "modelo-docentes.php";
   require_once "modelo-cvu-docentes.php";

@@ -1,8 +1,9 @@
 <?php
+  error_reporting(E_ALL ^ E_NOTICE);
   require_once "../core/modelo-usuarios.php";
   require_once "../core/modelo-paises.php";
   require_once "modelo-docentes.php";
-  require_once "modelo-articulos-docentes.php";
+  require_once "modelo-estancias-docentes.php";
   
   session_start( );
   $obj = new Usuarios( );
@@ -15,15 +16,15 @@
   $obj2->id_docente = $_GET["id_docente"];
   $obj2->obtenerDocente( );
   
-  $obj3 = new Articulos_Docentes( );
+  $obj3 = new Estancias_Docentes( );
   $obj3->id_docente = $obj2->id_docente;
-  $obj3->listaArticulosDocente( );
+  $obj3->listaEstanciasDocente( );
   
-  if( isset( $_GET["id_articulo_docente"] ) ) 
+  if( isset( $_GET["id_estancia_docente"] ) ) 
   {
-    $obj4 = new Articulos_Docentes( );
-    $obj4->id_articulo_docente = $_GET["id_articulo_docente"];
-    $obj4->obtenerArticulo( );
+    $obj4 = new Estancias_Docentes( );
+    $obj4->id_estancia_docente = $_GET["id_estancia_docente"];
+    $obj4->obtenerEstancia( );
   }
   
   $obj6 = new Paises( );
@@ -70,10 +71,10 @@ function confirmarBaja( )
     <td>
       <table class="tablaInterior" border="0" cellspacing="4" cellpadding="0" align="center">
         <tr>
-          <td width="40%">&nbsp;</td>
+          <td width="30%">&nbsp;</td>
           <td width="30%">&nbsp;</td>
           <td width="20%">&nbsp;</td>
-          <td width="10%">&nbsp;</td>
+          <td width="20%">&nbsp;</td>
         </tr>
         <tr class="textoTitulos1">
           <td colspan="4">M&oacute;dulo Alumnos</td>
@@ -85,7 +86,7 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos2">
-          <td colspan="4">Art&iacute;culos de docentes</td>
+          <td colspan="4">Estancias de investigaci&oacute;n de docentes</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -118,9 +119,9 @@ function confirmarBaja( )
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
-        <form id="form1" name="form1" method="post" action="articulos-docentes2.php" enctype="multipart/form-data">
+        <form id="form1" name="form1" method="post" action="estancias-docentes2.php" enctype="multipart/form-data">
         <tr class="textoTablas1">
-          <td colspan="4">DATOS DEL ART&Iacute;CULO</td>
+          <td colspan="4">DATOS DEL PROYECTO DE INVESTIGACI&Oacute;N</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -129,15 +130,33 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos3">
-          <td colspan="1">T&iacute;tulo del art&iacute;culo &bull;</td>
-          <td colspan="3">Revista &bull;</td>
+          <td colspan="2">Nombre del proyecto de investigaci&oacute;n &bull;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos4">
+          <td colspan="2">
+            <input type="text" name="proyecto" size="70" required="required" value="<?php echo $obj4->proyecto; ?>" />
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="textoTitulos3">
+          <td colspan="1">Instituci&oacute;n educativa &bull;</td>
+          <td colspan="3">Departamento o Facultad &bull;</td>
         </tr>
         <tr class="textoTitulos4">
           <td colspan="1">
-            <input type="text" name="titulo" size="40" required="required" value="<?php echo $obj4->titulo; ?>" />
+            <input type="text" name="institucion" size="30" required="required" value="<?php echo $obj4->institucion; ?>" />
           </td>
           <td colspan="3">
-            <input type="text" name="revista" size="40" required="required" value="<?php echo $obj4->revista; ?>" />
+            <input type="text" name="departamento" size="30" required="required" value="<?php echo $obj4->departamento; ?>" />
           </td>
         </tr>
         <tr>
@@ -147,14 +166,12 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos3">
-          <td>Editorial &bull;</td>
           <td>Pa&iacute;s &bull;</td>
-          <td colspan="2">Año &bull;</td>
+          <td>Ciudad &bull;</td>
+          <td>Fecha de inicio &bull;</td>
+          <td>Fecha de t&eacute;rmino &bull;</td>
         </tr>
         <tr class="textoTitulos4">
-          <td>
-            <input type="text" name="editorial" size="40" required="required" value="<?php echo $obj4->editorial; ?>" />
-          </td>
           <td>
             <select name="id_pais" required="required">
               <option value=''></option>
@@ -172,9 +189,12 @@ function confirmarBaja( )
               ?>
             </select>
           </td>
-          <td colspan="2">
-            <input type="number" name="anio" min="1900" max="2050" required="required" value="<?php echo $obj4->anio; ?>" />
+          <td>
+            <input type="text" name="ciudad" size="30" required="required" value="<?php echo $obj4->ciudad; ?>" />
           </td>
+          <td><input type="date" name="fecha_inicio" placeholder="aaaa-mm-dd" value="<?php echo $obj4->fecha_inicio; ?>" /></td>
+          <td><input type="date" name="fecha_termino" placeholder="aaaa-mm-dd" value="<?php echo $obj4->fecha_termino; ?>" /></td>
+          
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -183,24 +203,20 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos3">
-          <td >LGAC </td>
-          <td>ISBN &bull;</td>
-          <td colspan="2">Colaboraci&oacute;n </td>
+          <td>Apoyo financiero </td>
+          <td>Monto financiero </td>
+          <td colspan="2">Fuente de financiamiento </td>
         </tr>
         <tr class="textoTitulos4">
           <td>
-            <input type="text" name="lgac" size="40" value="<?php echo $obj4->lgac; ?>" />
+            <input type="radio" name="apoyo_financiero" value="1" required="required" <?php if( $obj4->apoyo_financiero==1 ) { echo "checked='checked'"; } ?> /> Si &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="apoyo_financiero" value="2" required="required" <?php if( $obj4->apoyo_financiero==2 ) { echo "checked='checked'"; } ?> /> No
           </td>
           <td>
-            <input type="text" name="isbn" size="30" required="required" value="<?php echo $obj4->isbn; ?>" />
+            <input type="number" name="monto_financiero" required="required" value="<?php echo $obj4->monto_financiero; ?>" />
           </td>
           <td colspan="2">
-            <select name="colaboracion" >
-              <option value=''></option>
-              <option value='1' <?php if( $obj4->colaboracion==1 ) { echo "selected='selected'"; } ?>>Con profesores</option>
-              <option value='2' <?php if( $obj4->colaboracion==2 ) { echo "selected='selected'"; } ?>>Con estudiantes</option>
-              <option value='3' <?php if( $obj4->colaboracion==3 ) { echo "selected='selected'"; } ?>>Con profesores y estudiantes</option>
-            </select>
+            <input type="text" size="40" name="fuente_financiamiento" required="required" value="<?php echo $obj4->fuente_financiamiento; ?>" />
           </td>
         </tr>
         <tr>
@@ -213,7 +229,7 @@ function confirmarBaja( )
           <td>
             <input type="submit" name="submit" value="   Enviar   " />
             <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-            <input type="hidden" name="id_articulo_docente" value="<?php echo $obj4->id_articulo_docente; ?>" />
+            <input type="hidden" name="id_estancia_docente" value="<?php echo $obj4->id_estancia_docente; ?>" />
           </td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -232,37 +248,37 @@ function confirmarBaja( )
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTablas1">
-          <td>T&Iacute;TULO DEL ART&Iacute;CULO</td>
-          <td>EDITORIAL</td>
-          <td>AÑO</td>
+          <td>NOMBRE DEL PROYECTO</td>
+          <td>INSTITUCI&Oacute;N EDUCATIVA</td>
+          <td>PA&Iacute;S</td>
           <td>ACCIONES</td>
         </tr>
         <?php
-	        $max = count( $obj3->id_articulo_docente );
+	        $max = count( $obj3->id_estancia_docente );
           
           for( $i=0; $i<$max; $i++ )
           {
 	      ?>
         <tr class="textoTablas2">
-          <td valign="top"><?php echo $obj3->titulo[$i]; ?>&nbsp;</td>
-          <td valign="top"><?php echo $obj3->editorial[$i]; ?>&nbsp;</td>
-          <td valign="top"><?php echo $obj3->anio[$i]; ?>&nbsp;</td>
+          <td valign="top"><?php echo $obj3->proyecto[$i]; ?>&nbsp;</td>
+          <td valign="top"><?php echo $obj3->institucion[$i]; ?>&nbsp;</td>
+          <td valign="top"><?php echo $obj3->pais[$i]; ?>&nbsp;</td>
           <td valign="top">
             <table border="0" cellspacing="0" cellpadding="0" align="center">
               <tr>
                 <td>
-                  <form id="form2" name="form2" method="get" action="articulos-docentes.php">
+                  <form id="form2" name="form2" method="get" action="estancias-docentes.php">
                     <input type="image" name="submit" src="../images/icon-edit.png" />
                     <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-                    <input type="hidden" name="id_articulo_docente" value="<?php echo $obj3->id_articulo_docente[$i]; ?>" />
+                    <input type="hidden" name="id_estancia_docente" value="<?php echo $obj3->id_estancia_docente[$i]; ?>" />
                   </form>
                 </td>
                 <td>&nbsp;</td>
                 <td>
-                  <form id="form3" name="form3" method="post" action="articulos-docentes3.php" onclick="return confirmarBaja( )">
+                  <form id="form3" name="form3" method="post" action="estancias-docentes3.php" onclick="return confirmarBaja( )">
                     <input type="image" name="submit" src="../images/icon-delete.png" />
                     <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
-                    <input type="hidden" name="id_articulo_docente" value="<?php echo $obj3->id_articulo_docente[$i]; ?>" />
+                    <input type="hidden" name="id_estancia_docente" value="<?php echo $obj3->id_estancia_docente[$i]; ?>" />
                   </form>
                 </td>
               </tr>
@@ -283,7 +299,7 @@ function confirmarBaja( )
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td align="center">
-            <form id="form4" name="form4" method="post" action="excel-articulos-docentes.php">
+            <form id="form4" name="form4" method="post" action="excel-estancias-docentes.php">
               <input type="submit" value=" Exportar Excel " />
               <input type="hidden" name="id_docente" value="<?php echo $obj2->id_docente; ?>" />
             </form>
