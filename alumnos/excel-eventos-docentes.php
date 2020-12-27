@@ -1,11 +1,11 @@
 <?php
   header( "Content-Type: application/vnd.ms-excel" );
-  header( "Content-Disposition: attachment; filename=reporte-estancias-docentes.xls" );
+  header( "Content-Disposition: attachment; filename=reporte-eventos-docentes.xls" );
   
   require_once "../core/modelo-usuarios.php";
   require_once "../core/modelo-programas.php";
   require_once "modelo-docentes.php";
-  require_once "modelo-estancias-docentes.php";
+  require_once "modelo-eventos-docentes.php";
   
   session_start( );
   $obj = new Usuarios( );
@@ -18,9 +18,9 @@
   $obj2->id_docente = $_POST["id_docente"];
   $obj2->obtenerDocente( );
   
-  $obj3 = new Estancias_Docentes( );
+  $obj3 = new Eventos_Docentes( );
   $obj3->id_docente = $obj2->id_docente;
-  $obj3->listaEstanciasDocente( );
+  $obj3->listaEventosDocente( );
 ?>
 
 
@@ -37,7 +37,7 @@
       <td colspan="4">M&oacute;dulo Alumnos</td>
     </tr>
     <tr>
-      <td colspan="4">Estancias de investigaci&oacute;n del docente</td>
+      <td colspan="4">Eventos acad&eacute;micos del docente</td>
     </tr>
     <tr>
       <td colspan="4">&nbsp;</td>
@@ -53,34 +53,28 @@
     </tr>
     <tr>
       <td>ID</td>
-      <td>NOMBRE DEL PROYECTO DE INVESTIGACI&Oacute;N</td>
-      <td>INSTITUCI&Oacute;N EDUCATIVA</td>
-      <td>DEPARTAMENTO O FACULTAD</td>
-      <td>PA&Iacute;S</td>
+      <td>NOMBRE DEL EVENTO</td>
+      <td>NOMBRE DE LA PONENCIA</td>
+      <td>INSTITUCI&Oacute;N</td>
+      <td>PAÍS</td>
       <td>CIUDAD</td>
       <td>FECHA DE INICIO</td>
       <td>FECHA DE T&Eacute;RMINO</td>
-      <td>APOYO FINANCIERO</td>
-      <td>MONTO FINANCIERO</td>
-      <td>FUENTE DE FINANCIAMIENTO</td>
     </tr>
     <?php
-      $max = count( $obj3->id_estancia_docente );
+      $max = count( $obj3->id_evento_docente );
             
       for( $i=0; $i<$max; $i++ ) {
     ?>
     <tr>
-      <td><?php echo $obj3->id_estancia_docente[$i]; ?></td>
-      <td><?php echo $obj3->proyecto[$i]; ?></td>
+      <td><?php echo $obj3->id_evento_docente[$i]; ?></td>
+      <td><?php echo $obj3->evento[$i]; ?></td>
+      <td><?php echo $obj3->ponencia[$i]; ?></td>
       <td><?php echo $obj3->institucion[$i]; ?></td>
-      <td><?php echo $obj3->departamento[$i]; ?></td>
       <td><?php echo $obj3->pais[$i]; ?></td>
       <td><?php echo $obj3->ciudad[$i]; ?></td>
       <td><?php echo $obj3->fecha_inicio[$i]; ?></td>
       <td><?php echo $obj3->fecha_termino[$i]; ?></td>
-      <td><?php echo $obj3->apoyo_financiero_txt[$i]; ?></td>
-      <td><?php echo $obj3->monto_financiero[$i]; ?></td>
-      <td><?php echo $obj3->fuente_financiamiento[$i]; ?></td>
     </tr>
     <?php
       }
