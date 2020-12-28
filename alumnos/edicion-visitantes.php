@@ -3,7 +3,7 @@
   require_once "../core/modelo-programas.php";
   require_once "../core/modelo-estados.php";
   require_once "../core/modelo-paises.php";
-  require_once "modelo-organismos.php";
+  require_once "modelo-visitantes.php";
 
   session_start( );
   $obj = new Usuarios( );
@@ -12,16 +12,13 @@
   $obj->contrasena = $_SESSION["contrasena"];
   $obj->validarSession( );
 
-  $obj2 = new Organismos( );
-  $obj2->id_organismo = $_GET["id_organismo"];
-  $obj2->obtenerOrganismo( );
+  $obj2 = new Visitantes( );
+  $obj2->id_visitante = $_GET["id_visitante"];
+  $obj2->obtenerVisitante( );
   
   $obj3 = new Programas( );
   $obj3->id_programa = $obj2->id_programa;
   $obj3->obtenerPrograma( );
-
-  $obj4 = new Estados( );
-  $obj4->listaEstados( );
   
   $obj5 = new Paises( );
   $obj5->listaPaises( );
@@ -52,16 +49,16 @@
   </tr>
   <tr height="100%" valign="top">
     <td>
-      <form id="form1" name="form1" method="post" action="edicion-organismos2.php" enctype="multipart/form-data">
+      <form id="form1" name="form1" method="post" action="edicion-visitantes2.php" enctype="multipart/form-data">
       <table class="tablaInterior" border="0" cellspacing="4" cellpadding="0" align="center">
         <tr>
-          <td width="25%">&nbsp;</td>
-          <td width="25%">&nbsp;</td>
-          <td width="25%">&nbsp;</td>
-          <td width="25%">&nbsp;</td>
+          <td width="23%">&nbsp;</td>
+          <td width="27%">&nbsp;</td>
+          <td width="23%">&nbsp;</td>
+          <td width="27%">&nbsp;</td>
         </tr>
         <tr class="textoTitulos1">
-          <td colspan="4">M&oacute;dulo Admisi&oacute;n</td>
+          <td colspan="4">M&oacute;dulo Alumnos</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -70,7 +67,7 @@
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos2">
-          <td colspan="4">Edición de organismos nacionales e internacionales para la difusi&oacute;n de la convocatoria</td>
+          <td colspan="4">Edici&oacute;n de profesores visitantes</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -100,12 +97,12 @@
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos3">
-          <td colspan="2">Nombre del organismo &bull;</td>
-          <td colspan="2">Titular del organismo &bull;</td>
+          <td colspan="2">Nombre del profesor &bull;</td>
+          <td colspan="2">Instituci&oacute;n de procedencia &bull;</td>
         </tr>
         <tr class="textoTitulos4">
           <td colspan="2"><input type="text" name="nombre" size="50" maxlength="50" value="<?php echo $obj2->nombre; ?>" required="required" /></td>
-          <td colspan="2"><input type="text" name="titular" size="50" maxlength="50" value="<?php echo $obj2->titular; ?>" required="required" /></td>
+          <td colspan="2"><input type="text" name="institucion" size="50" maxlength="50" value="<?php echo $obj2->institucion; ?>" required="required" /></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -114,33 +111,13 @@
           <td>&nbsp;</td>
         </tr>
         <tr class="textoTitulos3">
-          <td>Ciudad &bull;</td>
-          <td>Estado &bull;</td>
+          <td>Nombre del evento &bull;</td>
           <td>Pa&iacute;s &bull;</td>
-          <td>Correo Electr&oacute;nico</td>
+          <td>Fecha de inicio &bull;</td>
+          <td>Fecha de t&eacute;rmino &bull;</td>
         </tr>
         <tr class="textoTitulos4">
-          <td><input type="text" name="ciudad" size="25" maxlength="50" value="<?php echo $obj2->ciudad; ?>" required="required" /></td>
-          <td>
-            <select name="id_estado" required="required">
-              <option value=''></option>
-              <?php
-                $max = count( $obj4->id_estado );
-                
-                for( $i=0; $i<$max; $i++ )
-                {
-                  if( $obj4->id_estado[$i]==$obj2->id_estado )
-                  {
-                          printf( "<option value='%d' selected='selected'>%s</option>\n", $obj4->id_estado[$i], $obj4->nombre[$i] );
-                  }
-                  else
-                  {
-                          printf( "<option value='%d'>%s</option>\n", $obj4->id_estado[$i], $obj4->nombre[$i] );
-                  }
-                }
-              ?>
-            </select>
-          </td>
+          <td><input type="text" name="evento" size="25" maxlength="50" value="<?php echo $obj2->evento; ?>" required="required" /></td>
           <td>
             <select name="id_pais" required="required">
               <option value=''></option>
@@ -161,7 +138,8 @@
               ?>
             </select>
           </td>
-          <td><input type="email" name="correo" size="25" maxlength="20" value="<?php echo $obj2->correo; ?>" /></td>
+          <td><input type="date" name="fecha_inicio" placeholder="aaaa-mm-dd" value="<?php echo $obj2->fecha_inicio; ?>" /></td>
+          <td><input type="date" name="fecha_termino" placeholder="aaaa-mm-dd" value="<?php echo $obj2->fecha_termino; ?>" /></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -169,27 +147,9 @@
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
-        <tr class="textoTitulos3">
-          <td>Tel&eacute;fono (10 d&iacute;gitos)</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr class="textoTitulos4">
-          <td><input type="text" name="telefono" size="25" maxlength="20" value="<?php echo $obj2->telefono; ?>" /></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>       
         <tr>
           <td colspan="4"><input type="submit" name="submit" value="   Enviar   " />
-            <input type="hidden" name="id_organismo" value="<?php echo $obj2->id_organismo; ?>" />
+            <input type="hidden" name="id_visitante" value="<?php echo $obj2->id_visitante; ?>" />
           </td>
         </tr>
         <tr>
